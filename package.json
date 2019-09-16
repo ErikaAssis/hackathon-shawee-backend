@@ -1,0 +1,18 @@
+{
+  "name": "shawee",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ErikaAssis/hackathon-shawee-backend.git",
+  "author": "Érika Assis <erika.s.assis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  }
+}
