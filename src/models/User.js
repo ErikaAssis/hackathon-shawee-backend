@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Squad = require('../models/Squad');
 
 const UserSchema = new Schema(
   {
@@ -21,6 +22,11 @@ const UserSchema = new Schema(
     area: {
       type: String,
       required: true
+    },
+    squad: {
+      type: Schema.Types.ObjectId,
+      ref: 'Squad',
+      default: null
     }
   },
   {

@@ -6,9 +6,8 @@ module.exports = {
     const { first_name, last_name, email, password_hash, area } = req.body;
 
     const userExists = await User.findOne({ email: email });
-
     if (userExists) {
-      return res.json({ message: 'E-mail já cadastrado' });
+      return res.status(200).json({ message: 'E-mail já cadastrado' });
     }
 
     await User.create({
@@ -19,17 +18,17 @@ module.exports = {
       area
     });
 
-    return res.json({ message: 'Usuário cadastrado com sucesso' });
+    return res.status(200).json({ message: 'Usuário cadastrado com sucesso' });
   },
 
   async users(req, res) {
     const users = await User.find({});
 
     if (users.length > 0) {
-      return res.json({ users: users });
+      return res.json({ users: users, length: users.length });
     }
-    return res.json({
-      message: 'Não existem usuários cadastrados na aplicação'
+    return res.status(404).json({
+      error: 'Não existem usuários cadastrados na aplicação'
     });
   }
 };
