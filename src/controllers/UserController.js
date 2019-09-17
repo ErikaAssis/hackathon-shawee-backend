@@ -11,7 +11,7 @@ module.exports = {
       return res.json({ message: 'E-mail já cadastrado' });
     }
 
-    const resp = await User.create({
+    await User.create({
       first_name,
       last_name,
       email,
