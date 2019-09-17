@@ -21,7 +21,7 @@ const UserSchema = new Schema(
     },
     area: {
       type: String,
-      required: true
+      default: null
     },
     squad: {
       type: Schema.Types.ObjectId,

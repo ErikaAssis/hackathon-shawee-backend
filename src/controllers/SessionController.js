@@ -14,7 +14,7 @@ class SessionController {
       return res.status(404).json({ error: 'Senha incorreta.' });
     }
 
-    return res.status(200).json({ message: 'Login OK' });
+    return res.status(200).json({ message: 'Login OK', id_user: user.id });
   }
 }
 
