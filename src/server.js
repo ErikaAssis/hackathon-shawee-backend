@@ -11,10 +11,7 @@ const app = express();
 /**
  * Database setup
  */
-mongoose.connect(
-  `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@shawee-q6zn9.mongodb.net/test?retryWrites=true&w=majority`,
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
 app.use(express.json());
 app.use(cors());
