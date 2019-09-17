@@ -1,1 +1,105 @@
 API - HELP
+
+Rotas:
+
+/api/user - Cria um novo usuário
+exemplo: 
+{
+    "first_name": "fulano",
+    "last_name": "silva",
+    "email": "fulano-silva@teste.com",
+    "password_hash": "senha",
+}
+
+Possíveis retornos:
+{ message: 'E-mail já cadastrado' }
+{ message: 'Usuário cadastrado com sucesso' }
+
+
+********************************************************************************************** 
+
+/api/user - Retorna o usuário de acordo com o id recebido no corpo da requisição
+exemplo:
+{
+	"user_id": "5d8103f4d34f2c118cb50c4e"
+}
+
+Possíveis retornos:
+{ error: 'Id não é válido.' }
+{ error: 'Usuário não existe.' }
+{ user: -usuário requisitado- }
+
+
+********************************************************************************************** 
+
+
+/api/users - Retorna todos usuários cadastrados
+
+Possíveis retornos:
+{ error: 'Não existem usuários cadastrados na aplicação' }
+{ users: -todos usuários da aplicação-, length: -quantidade de usuários da aplicação- }
+
+
+********************************************************************************************** 
+
+
+/api/login - Realiza login na aplicação
+exemplo:
+{
+	"email": "fulano-silva@teste.com",
+    "password": "senha",
+}
+
+Possíveis retornos:
+{ error: 'Usuário não encontrado.' }
+{ error: 'Senha incorreta.' }
+{ message: 'Login OK', id_user: -id do usuário logado- }
+
+
+********************************************************************************************** 
+
+/api/create_squad - Cria os squads
+
+Possíveis retornos:
+{ 
+    message: `Quantidade de participantes insuficiente para a criação de um squad de 4 pessoas.`,
+    users_out: -total de participantes sem squad-
+}
+{ message: 'Squads criado com sucesso.', users_out: -total de participantes sem squad- }
+
+
+********************************************************************************************** 
+
+/api/squads - Retorna todos os squads criados na aplicação
+
+Possíveis retornos:
+{ squads: -squads existentes na aplicação-, length: -total de squads- }
+{ error: 'Não existem squads cadastrados na aplicação' }
+
+
+********************************************************************************************** 
+
+/api/squad - Retorna o squad de acordo com o id recebido no corpo da requisição
+exemplo:
+{
+	"squad_id" : "5d8124b36f2cef20045615cd"
+}
+
+Possíveis retornos:
+{ error: 'Id não é válido.' }
+{ error: 'Squad não existe.' }
+{ squad: -squad requisitado- }
+
+
+********************************************************************************************** 
+
+/api/delete_squad - Apaga o squad de acordo com o id recebido no corpo da requisição
+exemplo:
+{
+	"squad_id" : "5d8124b36f2cef20045615cd"
+}
+
+Possíveis retornos:
+{ error: 'Id não é válido.' }
+{ error: 'Squad não existe.' }
+{ message: 'Squad removido com sucesso.' }

@@ -6,16 +6,17 @@ const SquadController = require('./controllers/SquadController');
 
 const routes = express.Router();
 
+// Apresenta o help da API
 routes.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/views/index.html'));
 });
-routes.post('/user', UserController.store); // Salva um novo usuário
-routes.get('/user', UserController.user); // Retorna o usuário de acordo com o id recebido no corpo da requisição
-routes.get('/users', UserController.users); // Retorna todos usuários cadastrados
-routes.post('/login', SessionController.login); // Realiza login
-routes.get('/create_squad', SquadController.create); // Cria squads
-routes.get('/squads', SquadController.squads); // Retorna todos squads cadastrados
-routes.get('/squad', SquadController.squad); // Retorna o squad de acordo com o id recebido no corpo da requisição
-routes.delete('/delete_squad', SquadController.delete); // Apaga o squad de acordo com o id recebido no corpo da requisição
+routes.post('/api/user', UserController.store); // Salva um novo usuário
+routes.get('/api/user', UserController.user); // Retorna o usuário de acordo com o id recebido no corpo da requisição
+routes.get('/api/users', UserController.users); // Retorna todos usuários cadastrados
+routes.post('/api/login', SessionController.login); // Realiza login
+routes.get('/api/create_squad', SquadController.create); // Cria squads
+routes.get('/api/squads', SquadController.squads); // Retorna todos squads cadastrados
+routes.get('/api/squad', SquadController.squad); // Retorna o squad de acordo com o id recebido no corpo da requisição
+routes.delete('/api/delete_squad', SquadController.delete); // Apaga o squad de acordo com o id recebido no corpo da requisição
 
 module.exports = routes;

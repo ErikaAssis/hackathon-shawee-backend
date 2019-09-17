@@ -61,13 +61,13 @@ module.exports = {
     const { squad_id } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(squad_id))
-      res.status(400).json({
+      return res.status(400).json({
         error: 'Id não é válido.'
       });
 
     const squad = await Squad.findById(squad_id);
     if (!squad)
-      res.status(404).json({
+      return res.status(404).json({
         error: 'Squad não existe.'
       });
 
