@@ -6,14 +6,17 @@
   "author": "Érika Assis <erika.s.assis@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"
   },
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   }
 }
