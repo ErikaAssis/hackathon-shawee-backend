@@ -1,5 +1,6 @@
 const axios = require('axios');
 const User = require('../models/User');
+const mongoose = require('mongoose');
 
 module.exports = {
   async store(req, res) {
@@ -30,5 +31,22 @@ module.exports = {
     return res.status(404).json({
       error: 'Não existem usuários cadastrados na aplicação'
     });
+  },
+
+  async user(req, res) {
+    const { user_id } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(user_id))
+      return res.status(400).json({
+        error: 'Id não é válido.'
+      });
+
+    const user = await User.findById(user_id);
+    if (!user)
+      return res.status(404).json({
+        error: 'Usuário não existe.'
+      });
+
+    return res.status(200).json({ user: user });
   }
 };
