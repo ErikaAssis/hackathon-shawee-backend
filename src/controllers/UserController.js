@@ -19,6 +19,17 @@ module.exports = {
       area
     });
 
-    return res.json(resp);
+    return res.json({ message: 'Usuário cadastrado com sucesso' });
+  },
+
+  async users(req, res) {
+    const users = await User.find({});
+
+    if (users.length > 0) {
+      return res.json({ users: users });
+    }
+    return res.json({
+      message: 'Não existem usuários cadastrados na aplicação'
+    });
   }
 };
