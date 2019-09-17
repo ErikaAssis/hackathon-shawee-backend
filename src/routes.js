@@ -1,10 +1,14 @@
 const express = require('express');
+const path = require('path');
 const UserController = require('./controllers/UserController');
 const SessionController = require('./controllers/SessionController');
 const SquadController = require('./controllers/SquadController');
 
 const routes = express.Router();
 
+routes.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/views/index.html'));
+});
 routes.post('/user', UserController.store); // Salva um novo usuário
 routes.get('/user', UserController.user); // Retorna o usuário de acordo com o id recebido no corpo da requisição
 routes.get('/users', UserController.users); // Retorna todos usuários cadastrados
