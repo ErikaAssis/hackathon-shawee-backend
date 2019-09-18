@@ -23,9 +23,21 @@ module.exports = {
   },
 
   async users(req, res) {
-    const users = await User.find({});
+    const users_danger = await User.find({});
+    const users = [];
 
-    if (users.length > 0) {
+    if (users_danger.length > 0) {
+      for (const user of users_danger) {
+        const { id, area, email, first_name, last_name, squad } = user;
+        users.push({
+          area,
+          id,
+          email,
+          first_name,
+          last_name,
+          squad
+        });
+      }
       return res.json({ users: users, length: users.length });
     }
     return res.status(404).json({
@@ -47,7 +59,10 @@ module.exports = {
         error: 'Usuário não existe.'
       });
 
-    return res.status(200).json({ user: user });
+    const { id, area, email, first_name, last_name, squad } = user;
+    return res
+      .status(200)
+      .json({ user: { area, id, email, first_name, last_name, squad } });
   },
 
   async update(req, res) {
@@ -87,6 +102,9 @@ module.exports = {
         error: 'Usuário não existe.'
       });
 
-    return res.status(200).json({ user: user });
+    const { id, area, email, first_name, last_name, squad } = user;
+    return res
+      .status(200)
+      .json({ user: { area, id, email, first_name, last_name, squad } });
   }
 };

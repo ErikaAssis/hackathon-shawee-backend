@@ -71,13 +71,19 @@ module.exports = {
         error: 'Squad não existe.'
       });
 
-    return res.status(200).json({ squad: squad });
+    const { id, members } = squad;
+    return res.status(200).json({ squad: { id, members } });
   },
 
   async squads(req, res) {
-    const squads = await Squad.find({});
+    const squads_danger = await Squad.find({});
+    const squads = [];
 
-    if (squads.length > 0) {
+    if (squads_danger.length > 0) {
+      for (const squad of squads_danger) {
+        const { id, members } = squad;
+        squads.push({ id, members });
+      }
       return res.json({ squads: squads, length: squads.length });
     }
     return res.status(404).json({
