@@ -18,11 +18,9 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/user - Retorna o usuário de acordo com o id recebido no corpo da requisição
+/api/user/:id - Retorna o usuário de acordo com o id recebido
 exemplo:
-{
-	"user_id": "5d8103f4d34f2c118cb50c4e"
-}
+    /api/user/5d8103f4d34f2c118cb50c4e
 
 Possíveis retornos:
 { error: 'Id não é válido.' }
@@ -79,11 +77,9 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/squad - Retorna o squad de acordo com o id recebido no corpo da requisição
+/api/squad/:id - Retorna o squad de acordo com o id recebido
 exemplo:
-{
-	"squad_id" : "5d8124b36f2cef20045615cd"
-}
+/api/squad/5d8124b36f2cef20045615cd
 
 Possíveis retornos:
 { error: 'Id não é válido.' }
@@ -93,11 +89,9 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/delete_squad - Apaga o squad de acordo com o id recebido no corpo da requisição
+/api/delete_squad/:id - Apaga o squad de acordo com o id recebido
 exemplo:
-{
-	"squad_id" : "5d8124b36f2cef20045615cd"
-}
+    /api/delete_squad/5d8124b36f2cef20045615cd
 
 Possíveis retornos:
 { error: 'Id não é válido.' }

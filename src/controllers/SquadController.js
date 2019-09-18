@@ -35,7 +35,7 @@ module.exports = {
   },
 
   async delete(req, res) {
-    const { squad_id } = req.body;
+    const squad_id = req.params.id;
 
     if (!mongoose.Types.ObjectId.isValid(squad_id))
       return res.status(400).json({
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   async squad(req, res) {
-    const { squad_id } = req.body;
+    const squad_id = req.params.id;
 
     if (!mongoose.Types.ObjectId.isValid(squad_id))
       return res.status(400).json({

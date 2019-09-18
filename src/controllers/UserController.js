@@ -34,7 +34,7 @@ module.exports = {
   },
 
   async user(req, res) {
-    const { user_id } = req.body;
+    const user_id = req.params.id;
 
     if (!mongoose.Types.ObjectId.isValid(user_id))
       return res.status(400).json({
