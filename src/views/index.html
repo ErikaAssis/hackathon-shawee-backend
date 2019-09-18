@@ -2,7 +2,11 @@ API - HELP
 
 Rotas:
 
-/api/user - Cria um novo usuário
+********************************************************************************************** 
+
+
+/api/user - Cria um novo usuário -- POST
+
 exemplo: 
 {
     "first_name": "fulano",
@@ -18,7 +22,9 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/user/:id - Retorna o usuário de acordo com o id recebido
+
+/api/user/:id - Retorna o usuário de acordo com o id recebido -- GET
+
 exemplo:
     /api/user/5d8103f4d34f2c118cb50c4e
 
@@ -31,7 +37,26 @@ Possíveis retornos:
 ********************************************************************************************** 
 
 
-/api/users - Retorna todos usuários cadastrados
+/api/update_user/:id - Altera o usuário de acordo com o id recebido -- PUT
+
+exemplo:
+    /api/update_user/5d8103f4d34f2c118cb50c4e
+    {
+	    "area": "desenvolvimento",
+    }
+
+Possíveis retornos:
+{ error: 'Id não é válido.' }
+{ error: 'Formato da requisição está errada.' }
+{ error: 'Requisição contém campos que não podem ser alterados' }
+{ error: 'Usuário não existe.' }
+{ user: -usuário alterado- }
+
+
+**********************************************************************************************
+
+
+/api/users - Retorna todos usuários cadastrados -- GET
 
 Possíveis retornos:
 { error: 'Não existem usuários cadastrados na aplicação' }
@@ -41,7 +66,8 @@ Possíveis retornos:
 ********************************************************************************************** 
 
 
-/api/login - Realiza login na aplicação
+/api/login - Realiza login na aplicação -- POST
+
 exemplo:
 {
 	"email": "fulano-silva@teste.com",
@@ -56,7 +82,7 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/create_squad - Cria os squads
+/api/create_squad - Cria os squads -- GET
 
 Possíveis retornos:
 { 
@@ -68,7 +94,8 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/squads - Retorna todos os squads criados na aplicação
+
+/api/squads - Retorna todos os squads criados na aplicação -- GET
 
 Possíveis retornos:
 { squads: -squads existentes na aplicação-, length: -total de squads- }
@@ -77,9 +104,11 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/squad/:id - Retorna o squad de acordo com o id recebido
+
+/api/squad/:id - Retorna o squad de acordo com o id recebido -- GET
+
 exemplo:
-/api/squad/5d8124b36f2cef20045615cd
+    /api/squad/5d8124b36f2cef20045615cd
 
 Possíveis retornos:
 { error: 'Id não é válido.' }
@@ -89,7 +118,9 @@ Possíveis retornos:
 
 ********************************************************************************************** 
 
-/api/delete_squad/:id - Apaga o squad de acordo com o id recebido
+
+/api/delete_squad/:id - Apaga o squad de acordo com o id recebido -- DELETE
+
 exemplo:
     /api/delete_squad/5d8124b36f2cef20045615cd
 

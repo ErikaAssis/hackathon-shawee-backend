@@ -12,6 +12,7 @@ routes.get('/', (req, res) => {
 });
 routes.post('/api/user', UserController.store); // Salva um novo usuário
 routes.get('/api/user/:id', UserController.user); // Retorna o usuário de acordo com o id recebido
+routes.put('/api/update_user/:id', UserController.update); // Altera o usuário de acordo com o id recebido
 routes.get('/api/users', UserController.users); // Retorna todos usuários cadastrados
 routes.post('/api/login', SessionController.login); // Realiza login
 routes.get('/api/create_squad', SquadController.create); // Cria squads

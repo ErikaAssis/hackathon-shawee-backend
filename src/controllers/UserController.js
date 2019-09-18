@@ -48,5 +48,45 @@ module.exports = {
       });
 
     return res.status(200).json({ user: user });
+  },
+
+  async update(req, res) {
+    const user_id = req.params.id;
+    const keys = Object.keys(req.body);
+
+    if (!mongoose.Types.ObjectId.isValid(user_id))
+      return res.status(400).json({
+        error: 'Id não é válido.'
+      });
+
+    if (keys.length < 1)
+      return res.status(400).json({
+        error: 'Formato da requisição está errada.'
+      });
+
+    if (
+      keys.includes('_id') ||
+      keys.includes('email') ||
+      keys.includes('password_hash') ||
+      keys.includes('squad') ||
+      keys.includes('createdAt') ||
+      keys.includes('updatedAt') ||
+      keys.includes('__v')
+    ) {
+      return res.status(400).json({
+        error: 'Requisição contém campos que não podem ser alterados'
+      });
+    }
+
+    const user = await User.findByIdAndUpdate(user_id, req.body, {
+      new: true
+    });
+
+    if (!user)
+      return res.status(404).json({
+        error: 'Usuário não existe.'
+      });
+
+    return res.status(200).json({ user: user });
   }
 };
