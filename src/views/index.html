@@ -128,3 +128,46 @@ Possíveis retornos:
 { error: 'Id não é válido.' }
 { error: 'Squad não existe.' }
 { message: 'Squad removido com sucesso.' }
+
+
+**********************************************************************************************
+
+/api/questions - Cria uma nova questão - POST
+
+exemplo: 
+{
+    "question": "What are some useful digital marketing tools?",
+	"area": "marketing",
+	"answer": "Google Analytics, Keyword Planner, Alexa.",
+	"options": ["Ahrefs, Campaign Watch, iSpionage.", "SimilarWeb, Spyfu, Wordtracker."]
+}
+
+Possíveis retornos:
+{ message: 'Questão já cadastrada.' }
+{ message: 'Questão cadastrado com sucesso' }
+
+
+**********************************************************************************************
+
+
+/api/questions/:area - Retorna as questões de acordo com a área - GET
+
+exemplo: 
+    /api/questions/marketing
+
+Possíveis retornos:
+{ error: `Não existem questões cadastradas da área ${area} na aplicação` }
+{ questions: -questões da área informada-, length: questions.length }
+
+
+**********************************************************************************************
+
+
+/api/questions - Retorna todas as questões salvas - GET
+
+exemplo:
+    /api/questions
+
+Possíveis retornos:
+{ error: 'Não existem questões cadastradas na aplicação' }
+{ questions: -questões-, length: questions.length }
