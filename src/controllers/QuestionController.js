@@ -8,7 +8,7 @@ module.exports = {
 
     const questionExists = await Question.findOne({ question: question });
     if (questionExists) {
-      return res.status(200).json({ message: 'Questão já cadastrada.' });
+      return res.status(200).json({ message: 'Question already exists.' });
     }
 
     await Question.create({
@@ -18,7 +18,9 @@ module.exports = {
       options
     });
 
-    return res.status(200).json({ message: 'Questão cadastrado com sucesso' });
+    return res
+      .status(200)
+      .json({ message: 'Successfully registered question.' });
   },
 
   async questions_area(req, res) {
@@ -39,7 +41,7 @@ module.exports = {
       return res.json({ questions: questions, length: questions.length });
     }
     return res.status(404).json({
-      error: `Não existem questões cadastradas da área ${area} na aplicação`
+      error: `There are no registered questions from the ${area} area in the application.`
     });
   },
 
@@ -60,7 +62,7 @@ module.exports = {
       return res.json({ questions: questions, length: questions.length });
     }
     return res.status(404).json({
-      error: 'Não existem questões cadastradas na aplicação'
+      error: 'Questions do not exist in the application.'
     });
   }
 };

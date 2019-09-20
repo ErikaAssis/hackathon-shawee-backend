@@ -8,7 +8,7 @@ module.exports = {
 
     const userExists = await User.findOne({ email: email });
     if (userExists) {
-      return res.status(200).json({ message: 'E-mail já cadastrado' });
+      return res.status(200).json({ message: 'E-mail already exists.' });
     }
 
     await User.create({
@@ -19,7 +19,7 @@ module.exports = {
       area
     });
 
-    return res.status(200).json({ message: 'Usuário cadastrado com sucesso' });
+    return res.status(200).json({ message: 'Successfully registered user.' });
   },
 
   async users(req, res) {
@@ -41,7 +41,7 @@ module.exports = {
       return res.json({ users: users, length: users.length });
     }
     return res.status(404).json({
-      error: 'Não existem usuários cadastrados na aplicação'
+      error: 'Users do not exist in the application.'
     });
   },
 
@@ -50,13 +50,13 @@ module.exports = {
 
     if (!mongoose.Types.ObjectId.isValid(user_id))
       return res.status(400).json({
-        error: 'Id não é válido.'
+        error: 'Id is not valid.'
       });
 
     const user = await User.findById(user_id);
     if (!user)
       return res.status(404).json({
-        error: 'Usuário não existe.'
+        error: 'User do not exits.'
       });
 
     const { id, area, email, first_name, last_name, squad } = user;
@@ -71,12 +71,12 @@ module.exports = {
 
     if (!mongoose.Types.ObjectId.isValid(user_id))
       return res.status(400).json({
-        error: 'Id não é válido.'
+        error: 'Id is not valid.'
       });
 
     if (keys.length < 1)
       return res.status(400).json({
-        error: 'Formato da requisição está errada.'
+        error: 'Request format is wrong.'
       });
 
     if (
@@ -89,7 +89,7 @@ module.exports = {
       keys.includes('__v')
     ) {
       return res.status(400).json({
-        error: 'Requisição contém campos que não podem ser alterados'
+        error: 'Request contains fields that cannot be changed.'
       });
     }
 
@@ -99,7 +99,7 @@ module.exports = {
 
     if (!user)
       return res.status(404).json({
-        error: 'Usuário não existe.'
+        error: 'User do not exits.'
       });
 
     const { id, area, email, first_name, last_name, squad } = user;

@@ -10,7 +10,7 @@ module.exports = {
 
     if (users.length < lengthSquad)
       return res.status(200).json({
-        message: `Quantidade de participantes insuficiente para a criação de um squad de ${lengthSquad} pessoas.`,
+        message: 'Insufficient number of participants to create a squad.',
         users_out: users.length
       });
 
@@ -29,9 +29,10 @@ module.exports = {
       count--;
     }
 
-    return res
-      .status(200)
-      .json({ message: 'Squads criado com sucesso.', users_out: users.length });
+    return res.status(200).json({
+      message: 'Squads successfully created.',
+      users_out: users.length
+    });
   },
 
   async delete(req, res) {
@@ -39,13 +40,13 @@ module.exports = {
 
     if (!mongoose.Types.ObjectId.isValid(squad_id))
       return res.status(400).json({
-        error: 'Id não é válido.'
+        error: 'Id is not valid.'
       });
 
     const squad = await Squad.findById(squad_id);
     if (!squad)
       return res.status(404).json({
-        error: 'Squad não existe.'
+        error: 'Squad do not exits.'
       });
 
     for (const user of squad.members) {
@@ -54,7 +55,7 @@ module.exports = {
 
     await Squad.deleteOne({ _id: squad.id });
 
-    return res.status(200).json({ message: 'Squad removido com sucesso.' });
+    return res.status(200).json({ message: 'Squad successfully removed.' });
   },
 
   async squad(req, res) {
@@ -62,13 +63,13 @@ module.exports = {
 
     if (!mongoose.Types.ObjectId.isValid(squad_id))
       return res.status(400).json({
-        error: 'Id não é válido.'
+        error: 'Id is not valid.'
       });
 
     const squad = await Squad.findById(squad_id);
     if (!squad)
       return res.status(404).json({
-        error: 'Squad não existe.'
+        error: 'Squad do not exits.'
       });
 
     const { id, members } = squad;
@@ -87,7 +88,7 @@ module.exports = {
       return res.json({ squads: squads, length: squads.length });
     }
     return res.status(404).json({
-      error: 'Não existem squads cadastrados na aplicação'
+      error: 'Squads do not exist in the application.'
     });
   }
 };

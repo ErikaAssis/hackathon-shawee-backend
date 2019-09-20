@@ -1,13 +1,9 @@
-API - HELP
+*************************************** API - HELP ****************************************** 
 
-Rotas:
+Endpoint name: Create user
+Endpoint:  POST /api/users  
 
-********************************************************************************************** 
-
-
-/api/user - Cria um novo usuário -- POST
-
-exemplo: 
+Request format:
 {
     "first_name": "fulano",
     "last_name": "silva",
@@ -15,156 +11,164 @@ exemplo:
     "password_hash": "senha",
 }
 
-Possíveis retornos:
-{ message: 'E-mail já cadastrado' }
-{ message: 'Usuário cadastrado com sucesso' }
-
-
-********************************************************************************************** 
-
-
-/api/user/:id - Retorna o usuário de acordo com o id recebido -- GET
-
-exemplo:
-    /api/user/5d8103f4d34f2c118cb50c4e
-
-Possíveis retornos:
-{ error: 'Id não é válido.' }
-{ error: 'Usuário não existe.' }
-{ user: -usuário requisitado- }
-
+Responses formats:
+{ message: 'E-mail already exists.' }
+{ message: 'Successfully registered user.' }
 
 ********************************************************************************************** 
 
+Endpoint name: Get user
+Endpoint:  GET /api/users/:id
 
-/api/update_user/:id - Altera o usuário de acordo com o id recebido -- PUT
+Request format:
+    /api/users/5d8103f4d34f2c118cb50c4e
 
-exemplo:
-    /api/update_user/5d8103f4d34f2c118cb50c4e
+Responses formats:
+{ error: 'Id is not valid.' }
+{ error: 'User do not exits.' }
+{ user: user }
+
+********************************************************************************************** 
+
+Endpoint name: Update user
+Endpoint:  PUT /api/users/:id
+
+Request format:
+    /api/users/5d8103f4d34f2c118cb50c4e
     {
-	    "area": "desenvolvimento",
+	    "area": "back-end",
     }
 
-Possíveis retornos:
-{ error: 'Id não é válido.' }
-{ error: 'Formato da requisição está errada.' }
-{ error: 'Requisição contém campos que não podem ser alterados' }
-{ error: 'Usuário não existe.' }
-{ user: -usuário alterado- }
-
+Responses formats:
+{ error: 'Id is not valid.' }
+{ error: 'Request format is wrong.' }
+{ error: 'Request contains fields that cannot be changed.' }
+{ error: 'User do not exits.' }
+{ user: user }
 
 **********************************************************************************************
 
+Endpoint name: Get users
+Endpoint:  GET /api/users
 
-/api/users - Retorna todos usuários cadastrados -- GET
+Request format:
+    /api/users
 
-Possíveis retornos:
-{ error: 'Não existem usuários cadastrados na aplicação' }
-{ users: -todos usuários da aplicação-, length: -quantidade de usuários da aplicação- }
-
-
-********************************************************************************************** 
-
-
-/api/login - Realiza login na aplicação -- POST
-
-exemplo:
-{
-	"email": "fulano-silva@teste.com",
-    "password": "senha",
-}
-
-Possíveis retornos:
-{ error: 'Usuário não encontrado.' }
-{ error: 'Senha incorreta.' }
-{ message: 'Login OK', id_user: -id do usuário logado- }
-
+Responses formats:
+{ error: 'Users do not exist in the application.' }
+{ users: user, length: -quantidade de usuários da aplicação- }
 
 ********************************************************************************************** 
 
-/api/create_squad - Cria os squads -- GET
+Endpoint name: Login
+Endpoint:  POST /api/login
 
-Possíveis retornos:
+Request format:
+    /api/login
+    {
+        "email": "fulano-silva@teste.com",
+        "password": "password",
+    }
+
+Responses formats:
+{ error: 'User not found.' }
+{ error: 'Incorrect password.' }
+{ message: 'Login OK', id_user: id }
+
+********************************************************************************************** 
+
+Endpoint name: Creat squads
+Endpoint:  POST /api/squads
+
+Request format:
+    /api/squads
+
+Responses formats:
 { 
-    message: `Quantidade de participantes insuficiente para a criação de um squad de 4 pessoas.`,
-    users_out: -total de participantes sem squad-
+    message: `Insufficient number of participants to create a squad.`,
+    users_out: users.length
 }
-{ message: 'Squads criado com sucesso.', users_out: -total de participantes sem squad- }
-
-
-********************************************************************************************** 
-
-
-/api/squads - Retorna todos os squads criados na aplicação -- GET
-
-Possíveis retornos:
-{ squads: -squads existentes na aplicação-, length: -total de squads- }
-{ error: 'Não existem squads cadastrados na aplicação' }
-
+{ 
+    message: 'Squads successfully created.', 
+    users_out: users.length
+}
 
 ********************************************************************************************** 
 
+Endpoint name: Get squads
+Endpoint:  GET /api/squads
 
-/api/squad/:id - Retorna o squad de acordo com o id recebido -- GET
+Request format:
+    /api/squads
 
-exemplo:
-    /api/squad/5d8124b36f2cef20045615cd
-
-Possíveis retornos:
-{ error: 'Id não é válido.' }
-{ error: 'Squad não existe.' }
-{ squad: -squad requisitado- }
-
+Responses formats:
+{ squads: squads, length: squads.length }
+{ error: 'Squads do not exist in the application.' }
 
 ********************************************************************************************** 
 
+Endpoint name: Get squad
+Endpoint:  GET /api/squads/:id
 
-/api/delete_squad/:id - Apaga o squad de acordo com o id recebido -- DELETE
+Request format:
+    /api/squads/5d8124b36f2cef20045615cd
 
-exemplo:
-    /api/delete_squad/5d8124b36f2cef20045615cd
+Responses formats:
+{ error: 'Id is not valid.' }
+{ error: 'Squad do not exits.' }
+{ squad: squad }
 
-Possíveis retornos:
-{ error: 'Id não é válido.' }
-{ error: 'Squad não existe.' }
-{ message: 'Squad removido com sucesso.' }
+********************************************************************************************** 
 
+Endpoint name: Delete squad
+Endpoint:  DELETE /api/squads/:id
+
+Request format:
+    /api/squads/5d8124b36f2cef20045615cd
+
+Responses formats:
+{ error: 'Id is not valid.' }
+{ error: 'Squad do not exits.' }
+{ message: 'Squad successfully removed.' }
 
 **********************************************************************************************
 
-/api/questions - Cria uma nova questão - POST
+Endpoint name: Create question
+Endpoint:  POST /api/questions
 
-exemplo: 
-{
-    "question": "What are some useful digital marketing tools?",
-	"area": "marketing",
-	"answer": "Google Analytics, Keyword Planner, Alexa.",
-	"options": ["Ahrefs, Campaign Watch, iSpionage.", "SimilarWeb, Spyfu, Wordtracker."]
-}
+Request format:
+    /api/questions
+    {
+        "question": "What are some useful digital marketing tools?",
+        "area": "marketing",
+        "answer": "Google Analytics, Keyword Planner, Alexa.",
+        "options": ["Ahrefs, Campaign Watch, iSpionage.", "SimilarWeb, Spyfu, Wordtracker."]
+    }
 
-Possíveis retornos:
-{ message: 'Questão já cadastrada.' }
-{ message: 'Questão cadastrado com sucesso' }
-
+Responses formats:
+{ message: 'Question already exists.' }
+{ message: 'Successfully registered question.' }
 
 **********************************************************************************************
 
+Endpoint name: Get question for area
+Endpoint:  GET /api/questions/:area
 
-/api/questions/:area - Retorna as questões de acordo com a área - GET
-
-exemplo: 
+Request format:
     /api/questions/marketing
 
-Possíveis retornos:
-{ error: `Não existem questões cadastradas da área ${area} na aplicação` }
-{ questions: -questões da área informada-, length: questions.length }
-
+Responses formats:
+{ error: 'There are no registered questions from the ${area} area in the application.' }
+{ questions: questions, length: questions.length }
 
 **********************************************************************************************
 
+Endpoint name: Get questions
+Endpoint:  GET /api/questions
 
-/api/questions - Retorna todas as questões salvas - GET
+Request format:
+    /api/questions
 
-Possíveis retornos:
-{ error: 'Não existem questões cadastradas na aplicação' }
-{ questions: -questões-, length: questions.length }
+Responses formats:
+{ error: 'Questions do not exist in the application.' }
+{ questions: questions-, length: questions.length }
